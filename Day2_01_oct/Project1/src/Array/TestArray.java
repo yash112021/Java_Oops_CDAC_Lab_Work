@@ -41,7 +41,8 @@ class TestArray{
 	case 6:
 		System.out.print("Enter the Nth max which you want-->");
 		int n =sc.nextInt();
-	//maxNthPrime(arr, n);
+		 int result = maxNthPrime(arr, n);
+		 System.out.println("Max prime number is: "+ result);
 		break;
 	case 7:
 	//minNthPrime();
@@ -57,6 +58,8 @@ class TestArray{
 
 	} while(choice!=8);
 }
+
+	
 
 	public static void acceptData(int[] arr,int size){
 		Scanner sc = new Scanner(System.in);
@@ -80,7 +83,7 @@ class TestArray{
 
 	// here in these function we are going to return an array will contain the prime Numbers
   	public static int[] isPrime(int []arr){
-		int cnt=0; 
+		//int cnt=0; 
 		int temp[]=new int[arr.length];
 		for(int i =0; i<temp.length;i++){
 			
@@ -145,7 +148,30 @@ class TestArray{
 		return fact;*/
 	}
 	
-
+	 public static int maxNthPrime(int[] arr, int n) {
+		// TODO Auto-generated method stub
+		 int []dumpy=isPrime(arr);
+		 for(int i=0; i<n; i++) {
+		 int pos = findMaxpos(arr,i);
+		 int temp = arr[i];
+		 arr[i] = arr[pos];
+		 arr[pos] = temp;
+	 }	 
+		return arr[n-1]; 
+		
+	}
+	 private static int findMaxpos(int [] arr, int start) {
+		int pos = start;
+		int max = arr[pos];
+		for(int i =0; i<start+1; i++) {
+			if(max < arr[i]) {
+				pos = i;
+				max = arr[i];
+			}
+			
+		}
+		return pos;
+	 } 
 
 
 }
